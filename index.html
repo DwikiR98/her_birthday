@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nadin's Birthday Invitation</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #3e2c23, #a67c52);
+        color: #fff;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .opening {
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(135deg, #3e2c23, #6b4f3a);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        text-align: center;
+        transition: opacity 1s ease;
+      }
+
+      .opening h1 {
+        font-size: 24px;
+        margin-bottom: 16px;
+      }
+
+      .open-btn {
+        padding: 12px 20px;
+        border-radius: 14px;
+        border: none;
+        background: #d2b48c;
+        color: #3e2c23;
+        font-weight: 600;
+        cursor: pointer;
+        animation: pulse 1.5s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.08);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(12px);
+        border-radius: 24px;
+        padding: 28px 24px;
+        width: 92%;
+        max-width: 460px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        animation: fadeIn 1.5s ease;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      .subtitle {
+        font-size: 18px;
+        font-weight: 700;
+        color: #ffd8a8;
+        margin: 16px 0 10px 0;
+        letter-spacing: 0.6px;
+        text-align: left;
+      }
+
+      .sweet-text {
+        font-size: 13px;
+        opacity: 0.95;
+        margin-bottom: 16px;
+        min-height: 60px;
+        border-right: 2px solid #ffd8a8;
+        white-space: normal;
+        word-wrap: break-word;
+        overflow: hidden;
+      }
+
+      .countdown {
+        margin: 12px 0;
+        font-weight: 600;
+        color: #ffd8a8;
+      }
+
+      .section-title {
+        text-align: left;
+        font-size: 15px;
+        font-weight: 600;
+        margin-top: 16px;
+        margin-bottom: 6px;
+        color: #ffe4c4;
+      }
+
+      .timeline {
+        text-align: left;
+        margin-top: 16px;
+      }
+
+      .item {
+        margin-bottom: 14px;
+        padding: 10px;
+        border-left: 3px solid #d2b48c;
+        animation: slideUp 0.8s ease forwards;
+        opacity: 0;
+      }
+
+      .item:nth-child(1) {
+        animation-delay: 0.3s;
+      }
+      .item:nth-child(2) {
+        animation-delay: 0.6s;
+      }
+      .item:nth-child(3) {
+        animation-delay: 0.9s;
+      }
+
+      .time {
+        font-weight: 600;
+        color: #ffd8a8;
+      }
+
+      iframe {
+        width: 100%;
+        height: 200px;
+        border-radius: 16px;
+        margin-top: 16px;
+        border: none;
+      }
+
+      .footer {
+        margin-top: 18px;
+        font-size: 15px;
+        font-weight: 500;
+        background: rgba(210, 180, 140, 0.15);
+        padding: 12px;
+        border-radius: 12px;
+      }
+
+      .dresscode-colors {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 8px;
+      }
+
+      .color-box {
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+        animation: fadePop 0.6s ease forwards;
+        opacity: 0;
+      }
+
+      .color-box:nth-child(1) {
+        animation-delay: 0.2s;
+      }
+      .color-box:nth-child(2) {
+        animation-delay: 0.4s;
+      }
+      .color-box:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+      .color-box:nth-child(4) {
+        animation-delay: 0.8s;
+      }
+      .color-box:nth-child(5) {
+        animation-delay: 1s;
+      }
+
+      @keyframes fadePop {
+        from {
+          opacity: 0;
+          transform: scale(0.6);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="opening" id="opening">
+      <h1>💌 A little surprise for you</h1>
+      <button class="open-btn" onclick="openInvitation()">
+        Tap to Open ✨
+      </button>
+    </div>
+
+    <canvas id="confetti"></canvas>
+
+    <div class="center">
+      <div class="card">
+        <h1>🎂 Happy Birthday Sayang 💖</h1>
+
+        <div class="sweet-text" id="typewriter"></div>
+
+        <div class="countdown" id="countdown"></div>
+
+        <div class="subtitle">📅 22 March 2026</div>
+
+        <div class="section-title">Our Activities:</div>
+
+        <div class="timeline">
+          <div class="item">
+            <div class="time">15:00</div>
+            <div>Secret Activity 🤫</div>
+          </div>
+          <div class="item">
+            <div class="time">17:30</div>
+            <div>Dinner at Acta Brasserie 🍽️</div>
+          </div>
+          <div class="item">
+            <div class="time">After</div>
+            <div>Coffee & Strolling ☕✨</div>
+          </div>
+        </div>
+
+        <iframe
+          src="https://www.google.com/maps?q=Acta%20Brasserie%20Senayan&output=embed"
+        ></iframe>
+
+        <div class="footer">
+          Dresscode: Brown / Earth Tone 🤎
+          <div class="dresscode-colors">
+            <div class="color-box" style="background: #5c4033"></div>
+            <div class="color-box" style="background: #8b5e3c"></div>
+            <div class="color-box" style="background: #a67c52"></div>
+            <div class="color-box" style="background: #c2a27c"></div>
+            <div class="color-box" style="background: #3e2c23"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <audio
+      id="music"
+      src="Bongo Cat - Happy Birthday to You (Cover Version).mp3"
+    ></audio>
+
+    <script>
+      const music = document.getElementById("music");
+
+      function openInvitation() {
+        document.getElementById("opening").classList.add("hidden");
+        music.play();
+        startTypewriter();
+      }
+
+      // TYPEWRITER EFFECT
+      const text =
+        "I planned this day just for you... 🤎 Hope it makes you smile all day long ✨";
+      let index = 0;
+
+      function startTypewriter() {
+        const el = document.getElementById("typewriter");
+        function type() {
+          if (index < text.length) {
+            el.innerHTML += text.charAt(index);
+            index++;
+            setTimeout(type, 40);
+          }
+        }
+        type();
+      }
+
+      // COUNTDOWN
+      const target = new Date("2026-03-22T15:00:00");
+      const countdownEl = document.getElementById("countdown");
+
+      function updateCountdown() {
+        const now = new Date();
+        const diff = target - now;
+
+        if (diff <= 0) {
+          countdownEl.innerHTML = "It's time!! 💖";
+          return;
+        }
+
+        const h = Math.floor(diff / (1000 * 60 * 60));
+        const m = Math.floor((diff / (1000 * 60)) % 60);
+        const s = Math.floor((diff / 1000) % 60);
+
+        countdownEl.innerHTML = `Countdown: ${h}h ${m}m ${s}s ⏳`;
+      }
+
+      setInterval(updateCountdown, 1000);
+
+      // CONFETTI
+      const canvas = document.getElementById("confetti");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      let pieces = [];
+
+      for (let i = 0; i < 120; i++) {
+        pieces.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 6 + 2,
+          speed: Math.random() * 2 + 1,
+        });
+      }
+
+      function update() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        pieces.forEach((p) => {
+          ctx.fillStyle = "#d2b48c";
+          ctx.fillRect(p.x, p.y, p.size, p.size);
+          p.y += p.speed;
+          if (p.y > canvas.height) p.y = 0;
+        });
+        requestAnimationFrame(update);
+      }
+
+      update();
+
+      window.addEventListener("resize", () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+    </script>
+  </body>
+</html>
